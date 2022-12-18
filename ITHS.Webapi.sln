@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{881FA285-50BE-4E37-A810-F69A2983792C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{96A88511-A2AF-4C3F-B1A8-1299CE654220}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITHS.Webapi", "WebApi\ITHS.Webapi.csproj", "{36FECCB9-1AD6-4035-B117-72C2DB17311E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITHS.Domain", "ITHS.Domain\ITHS.Domain.csproj", "{BE76DAE0-CE38-4688-81B7-CB6655B4EB70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITHS.Application", "ITHS.Application\ITHS.Application.csproj", "{DFECD42F-FAFF-4BCD-83E8-670FF71B162E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITHS.Infrastructure", "ITHS.Infrastructure\ITHS.Infrastructure.csproj", "{1FA1756A-BB68-460B-A8B3-3CC63C59D675}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36FECCB9-1AD6-4035-B117-72C2DB17311E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36FECCB9-1AD6-4035-B117-72C2DB17311E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36FECCB9-1AD6-4035-B117-72C2DB17311E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36FECCB9-1AD6-4035-B117-72C2DB17311E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE76DAE0-CE38-4688-81B7-CB6655B4EB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE76DAE0-CE38-4688-81B7-CB6655B4EB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE76DAE0-CE38-4688-81B7-CB6655B4EB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE76DAE0-CE38-4688-81B7-CB6655B4EB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFECD42F-FAFF-4BCD-83E8-670FF71B162E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFECD42F-FAFF-4BCD-83E8-670FF71B162E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFECD42F-FAFF-4BCD-83E8-670FF71B162E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFECD42F-FAFF-4BCD-83E8-670FF71B162E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA1756A-BB68-460B-A8B3-3CC63C59D675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA1756A-BB68-460B-A8B3-3CC63C59D675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA1756A-BB68-460B-A8B3-3CC63C59D675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA1756A-BB68-460B-A8B3-3CC63C59D675}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36FECCB9-1AD6-4035-B117-72C2DB17311E} = {96A88511-A2AF-4C3F-B1A8-1299CE654220}
+		{BE76DAE0-CE38-4688-81B7-CB6655B4EB70} = {881FA285-50BE-4E37-A810-F69A2983792C}
+		{1FA1756A-BB68-460B-A8B3-3CC63C59D675} = {881FA285-50BE-4E37-A810-F69A2983792C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1645AEE8-E553-4140-BC8C-67FA21FAE9BB}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 80
+		$1.TabWidth = 8
+		$1.IndentWidth = 8
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.LabelPositioning = NoIndent
+		$2.NewLinesForBracesInTypes = False
+		$2.NewLinesForBracesInMethods = False
+		$2.NewLinesForBracesInProperties = False
+		$2.NewLinesForBracesInAccessors = False
+		$2.NewLinesForBracesInAnonymousMethods = False
+		$2.NewLinesForBracesInControlBlocks = False
+		$2.NewLinesForBracesInAnonymousTypes = False
+		$2.NewLinesForBracesInObjectCollectionArrayInitializers = False
+		$2.NewLinesForBracesInLambdaExpressionBody = False
+		$2.NewLineForElse = False
+		$2.NewLineForCatch = False
+		$2.NewLineForFinally = False
+		$2.NewLineForMembersInObjectInit = False
+		$2.NewLineForMembersInAnonymousTypes = False
+		$2.NewLineForClausesInQuery = False
+		$2.SpacingAfterMethodDeclarationName = True
+		$2.SpaceAfterMethodCallName = True
+		$2.WrappingKeepStatementsOnSingleLine = False
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
