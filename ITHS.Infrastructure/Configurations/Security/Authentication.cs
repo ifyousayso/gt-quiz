@@ -3,61 +3,51 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ITHS.Webapi
-{
-    public class Authentication
-    {
-        public Authentication()
-        {
-        }
-        
-        public string CreateJWTBearerToken(string serverHostUrl)
-        {
-            var key = GetSymmetricSecurityKey();
-            var signinCredentials = DoDigitalSigningUsingTheKey(key);
-            var jwtSecurityToken = CreateJwtSecurityToken(signinCredentials, serverHostUrl);
+namespace ITHS.Infrastructure.Configurations.Security;
 
-            var token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+public class Authentication {
+    public static string CreateJWTBearerToken(string serverHostUrl) {
+        SymmetricSecurityKey key = GetSymmetricSecurityKey();
+        SigningCredentials signinCredentials = DoDigitalSigningUsingTheKey(key);
+        JwtSecurityToken jwtSecurityToken = CreateJwtSecurityToken(signinCredentials, serverHostUrl);
 
-            return token;
-        }
+        string token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
 
-        private SymmetricSecurityKey GetSymmetricSecurityKey()
-        {
-            var myKeyInConfig = "ITHSsuperSecretKey";
-            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(myKeyInConfig));
-        }
+        return token;
+    }
 
-        private SigningCredentials DoDigitalSigningUsingTheKey(SymmetricSecurityKey key)
-        {
-            var signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            return signinCredentials;
-        }
-        private List<Claim> GetClaims()
-        {
-            var claims = new List<Claim>
-            {
-                    new Claim("School", "ITHS"),
-                    new Claim("Teacher", "Dawid")
-            };
-            return claims;
-        }
+    private static SymmetricSecurityKey GetSymmetricSecurityKey() {
+        string myKeyInConfig = "ITHSsuperSecretKey";
 
-        public JwtSecurityToken CreateJwtSecurityToken(SigningCredentials signinCredentials, string serverHostUrl)
-        {
-            var issuerFromConfig = "ITHS";
-            var expireDate = DateTime.Now.AddMinutes(5);
-            var claims = GetClaims();
+        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(myKeyInConfig));
+    }
 
-            var jwtSecurityToken = new JwtSecurityToken(
-                issuer: issuerFromConfig,
-                audience: serverHostUrl,
-                claims: claims,
-                expires: expireDate,
-                signingCredentials: signinCredentials
-            );
+    private static SigningCredentials DoDigitalSigningUsingTheKey(SymmetricSecurityKey key) {
+        SigningCredentials signinCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            return jwtSecurityToken;
-        }
+        return signinCredentials;
+    }
+
+    private static List<Claim> GetClaims() {
+        return new List<Claim> {
+            new Claim("School", "ITHS"),
+            new Claim("Teacher", "Dawid")
+        };
+    }
+
+    public static JwtSecurityToken CreateJwtSecurityToken(SigningCredentials signinCredentials, string serverHostUrl) {
+        string issuerFromConfig = "ITHS";
+        DateTime expireDate = DateTime.Now.AddMinutes(5);
+        List<Claim> claims = GetClaims();
+
+        JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
+            issuer: issuerFromConfig,
+            audience: serverHostUrl,
+            claims: claims,
+            expires: expireDate,
+            signingCredentials: signinCredentials
+        );
+
+        return jwtSecurityToken;
     }
 }

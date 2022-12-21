@@ -1,5 +1,4 @@
-﻿using ITHS.Domain.Constants;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ITHS.Application.ViewModels.Answers;
 

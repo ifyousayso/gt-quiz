@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\Persons\Adapters\" />
     <Folder Include="Contexts\TheTriviaApi\" />
     <Folder Include="Contexts\TheTriviaApi\Repositories\" />
   </ItemGroup>

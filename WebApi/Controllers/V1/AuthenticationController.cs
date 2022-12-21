@@ -1,4 +1,5 @@
 ﻿using ITHS.Application.ViewModels.Auth;
+using ITHS.Infrastructure.Configurations.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,16 +11,13 @@ using System.Net;
 
 namespace ITHS.Webapi.Controllers.V1;
 
+/// <summary>
+/// Controller class for authentication
+/// </summary>
 [Route("api/v1/[controller]")]
 [ApiExplorerSettings(GroupName = "v1")]
 [ApiController]
 public class AuthenticationController : ControllerBase {
-    private readonly Authentication _auth;
-
-    public AuthenticationController() {
-        _auth = new Authentication();
-    }
-
     /// <summary>
     /// Attempts to log in the user
     /// </summary>
@@ -36,7 +34,7 @@ public class AuthenticationController : ControllerBase {
 
             string serverHostUrl = $"{Request.Scheme}://{Request.Host.Host}:{Request.Host.Port}";
         
-            string token = _auth.CreateJWTBearerToken(serverHostUrl);
+            string token = Authentication.CreateJWTBearerToken(serverHostUrl);
         
             return Ok(token);
         } catch (Exception e) {

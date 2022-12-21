@@ -1,61 +1,49 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
-namespace ITHS.Webapi
-{
-    public class JwtMiddleware
-    {
-        private readonly RequestDelegate _next;
-        private IConfiguration _config;
-        public JwtMiddleware(RequestDelegate next)
-        {
-            _next = next;
+namespace ITHS.Infrastructure.Configurations.Security;
+
+public class JwtMiddleware {
+    private readonly RequestDelegate _next;
+
+    public JwtMiddleware(RequestDelegate next) {
+        _next = next;
+    }
+
+    public async Task Invoke(HttpContext context) {
+        string? token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+        if (token == null) {
+            return;
         }
 
-        public async Task Invoke(HttpContext context)
-        {
-            var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            var userId = ValidateToken(token);
-            if (userId != null)
-            {
-            }
+        int? userId = ValidateToken(token);
 
-            await _next(context);
-        }
+        await _next(context);
+    }
 
-        public int? ValidateToken(string token)
-        {
-            if (token == null)
-                return null;
+    public static int? ValidateToken(string token) {
+        JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+        byte[] key = Encoding.ASCII.GetBytes("ITHSsuperSecretKey");
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("ITHSsuperSecretKey");
-            try
-            {
-                tokenHandler.ValidateToken(token, new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
-                    ClockSkew = TimeSpan.Zero
-                }, out SecurityToken validatedToken);
+        try {
+            tokenHandler.ValidateToken(token, new TokenValidationParameters {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+                ClockSkew = TimeSpan.Zero
+            }, out SecurityToken validatedToken);
 
-                var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            JwtSecurityToken jwtToken = (JwtSecurityToken)validatedToken;
+            int userId = int.Parse(jwtToken.Claims.First((x) => x.Type == "id").Value);
 
-                // return user id from JWT token if validation successful
-                return userId;
-            }
-            catch
-            {
-                // return null if validation fails
-                return null;
-            }
+            return userId;
+        } catch {
+            return null;
         }
     }
 }

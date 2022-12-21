@@ -6,6 +6,9 @@ using System.Net.Mime;
 
 namespace ITHS.Webapi.Controllers.V1;
 
+/// <summary>
+/// Controller class for oracle
+/// </summary>
 [Route("api/v1/[controller]")]
 [ApiExplorerSettings(GroupName = "v1")]
 [ApiController]

@@ -7,13 +7,13 @@ using System.Reflection;
 namespace ITHS.Infrastructure.Configurations.Swagger;
 
 /// <summary>
-/// Swagger example setup using versioning and jwt authentication schema
+/// Swagger example setup using versioning and JWT authentication schema
 /// </summary>
 public static class SwaggerConfigExtensions {
     const string Bearer = "Bearer";
 
     /// <summary>
-    /// Custom swagger setup with versioning and JWT bearer authentication
+    /// Custom Swagger setup with versioning and JWT bearer authentication
     /// </summary>
     /// <param name="service"></param>
     /// <returns></returns>
@@ -28,8 +28,6 @@ public static class SwaggerConfigExtensions {
     
         service.AddSwaggerGen((options) => {
             options.SwaggerDoc("v1", V1);
-            options.SwaggerDoc("v2", V2);
-            options.SwaggerDoc("v3", V3);
 
             options.AddSecurityDefinition(Bearer, JwtBearerSecurityScheme);
 
@@ -42,7 +40,7 @@ public static class SwaggerConfigExtensions {
     }
 
     /// <summary>
-    /// Use custom swagger and Custom swagger UI
+    /// Use custom Swagger and custom Swagger UI
     /// </summary>
     /// <param name="app"></param>
     /// <returns></returns>
@@ -52,9 +50,7 @@ public static class SwaggerConfigExtensions {
         app.UseSwaggerUI((options) => {
             options.RoutePrefix = "swagger";
             string swaggerJsonBasePath = string.IsNullOrWhiteSpace(options.RoutePrefix) ? "." : "..";
-            options.SwaggerEndpoint("v1/swagger.json", "Demo doc V1");
-            options.SwaggerEndpoint("v2/swagger.json", "Demo doc V2");
-            options.SwaggerEndpoint("v3/swagger.json", "Demo doc V3");
+            options.SwaggerEndpoint("v1/swagger.json", "Quiz v1");
         });
 
         return app;
@@ -76,28 +72,10 @@ public static class SwaggerConfigExtensions {
     }
 
     static OpenApiInfo V1 => new OpenApiInfo {
-        Title = "ITHS - V1",
+        Title = "Quiz",
         Version = "v1",
-        Description = "Here we go v1 of the api",
-        TermsOfService = new Uri("http://toSomewhere.com"),
-        Contact = ContactIInformation,
-        License = LicenseDescription
-    };
-
-    static OpenApiInfo V2 => new OpenApiInfo {
-        Title = "ITHS - V2",
-        Version = "v2",
-        Description = "Here we go v2 of the api",
-        TermsOfService = new Uri("http://toSomewhere.com"),
-        Contact = ContactIInformation,
-        License = LicenseDescription
-    };
-
-    static OpenApiInfo V3 => new OpenApiInfo {
-        Title = "ITHS - V3",
-        Version = "v3",
-        Description = "Here we go v3 of the api",
-        TermsOfService = new Uri("http://toSomewhere.com"),
+        Description = "Here we go - v1 of the API",
+        TermsOfService = new Uri("https://www.example.com"),
         Contact = ContactIInformation,
         License = LicenseDescription
     };
