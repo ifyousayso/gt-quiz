@@ -28,10 +28,7 @@ public class AnswerService : IAnswerService {
 
     public AnswerResponse? GetAnswerById(Guid id) {
         using (ITHSDatabaseContext context = new ITHSDatabaseContext()) {
-            Answer? answer = context
-                .Answers
-                .Where((answer) => answer.Id.Equals(id))
-                .FirstOrDefault();
+            Answer? answer = getDbAnswerById(id, context);
 
             if (answer == null) {
                 return null;

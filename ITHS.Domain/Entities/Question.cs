@@ -10,10 +10,6 @@ public class Question : BaseEntity, IQuestion {
     [Required]
     public Guid CategoryId { get; set; }
 
-//    public Category? Category { get; set; }
-
     [Required]
     public Guid LanguageId { get; set; }
-
-//    public Language? Language { get; set; }
 }
