@@ -1,4 +1,4 @@
-﻿using ITHS.Webapi.Persistance;
+﻿using ITHS.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +20,12 @@ public static class DatabaseContextConfigurations {
         );
     }
 
+    /// <summary>
+    /// Configure the app for SQL server
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="config"></param>
+    /// <returns></returns>
     public static IServiceCollection AddITHSDbContextUsingSqlServer(this IServiceCollection services, IConfiguration config) {
         string ConnectionString = GetConnectionString(config, "ITHSDatabase");
 
@@ -30,6 +36,9 @@ public static class DatabaseContextConfigurations {
         );
     }
 
+    /// <summary>
+    /// Retrieve the connection string
+    /// </summary>
     private static string GetConnectionString(IConfiguration config, string name) {
         var ConnectionString = config.GetConnectionString(name);
     

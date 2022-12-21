@@ -3,7 +3,7 @@
     public class NobelPrizeWinner
     {
         public string awardYear { get; set; }
-        public Category category { get; set; }
+        public Categori category { get; set; }
         public CategoryFullName categoryFullName { get; set; }
         public string dateAwarded { get; set; }
         public int prizeAmount { get; set; }
@@ -12,7 +12,7 @@
         public List<Laureate> laureates { get; set; }
     }
 
-    public class Category
+    public class Categori
     {
         public string en { get; set; }
         public string se { get; set; }

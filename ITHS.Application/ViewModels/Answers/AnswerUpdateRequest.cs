@@ -1,5 +1,11 @@
-﻿namespace ITHS.Application.ViewModels.Answers;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ITHS.Application.ViewModels.Answers;
 
 public class AnswerUpdateRequest : AnswerBase {
-    public Guid Id { get; set; }
+    [Required]
+    public Guid QuestionId { get; set; }
+
+    [Required]
+    public bool IsCorrectAnswer { get; set; }
 }

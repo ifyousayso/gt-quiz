@@ -2,7 +2,7 @@
 using ITHS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ITHS.Webapi.Persistance;
+namespace ITHS.Infrastructure.Persistance;
 
 public class ITHSDatabaseContext : DbContext {
     public DbSet<Question> Questions { get; set; }
@@ -29,10 +29,19 @@ public class ITHSDatabaseContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
 
-        CreatePersonsModel(modelBuilder);
-        CreateRolesModel(modelBuilder);
-    }
+//        CreateQuestionsModel(modelBuilder);
 
+//        CreatePersonsModel(modelBuilder);
+//        CreateRolesModel(modelBuilder);
+    }
+        /*
+    private static void CreateQuestionsModel(ModelBuilder modelBuilder) {
+        modelBuilder.Entity<Question>()
+            .HasOne<Category>((question) => question.Category);
+        modelBuilder.Entity<Question>()
+            .HasOne<Language>((question) => question.Language);
+    }
+        */
     private static void CreatePersonsModel(ModelBuilder modelBuilder) {
         modelBuilder.Entity<Person>()
             .HasIndex((person) => person.FirstName)

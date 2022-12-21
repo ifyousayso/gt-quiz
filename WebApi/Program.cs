@@ -10,7 +10,7 @@ internal class Program {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
         ConfigurationManager config = builder.Configuration;
 
-        builder.Services.AddScoped<IPersonService, PersonService>();
+//        builder.Services.AddScoped<IPersonService, PersonService>();
         builder.Services.AddInfrastructureDependencies(config);
 
         builder.Services.AddITHSDbContextUsingSqlite();

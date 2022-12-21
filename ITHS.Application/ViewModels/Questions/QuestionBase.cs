@@ -9,4 +9,10 @@ namespace ITHS.Application.ViewModels.Questions;
 public abstract class QuestionBase : IQuestion {
     [MaxLength(255), Required]
     public string Description { get; set; } = "";
+
+    [MaxLength(15), Required]
+    public string Category { get; set; } = "";
+
+    [MaxLength(15), Required]
+    public string Language { get; set; } = "";
 }

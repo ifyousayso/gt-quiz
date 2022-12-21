@@ -1,6 +1,6 @@
 ﻿using ITHS.Domain.Entities;
 using ITHS.Domain.Interfaces.Repositories;
-using ITHS.Webapi.Persistance;
+using ITHS.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITHS.Infrastructure.Contexts.Persons.Repositories

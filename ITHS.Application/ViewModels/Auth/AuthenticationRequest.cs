@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ITHS.Application.ViewModels.Auth
-{
-    public class AuthenticationRequest
-    {
-        [Required]
-        public string UserName { get; set; } = "dawid";
+namespace ITHS.Application.ViewModels.Auth;
 
-        [Required]
-        public string Password { get; set; } = "iths";
-    }
+public class AuthenticationRequest {
+    [Required]
+    public string UserName { get; set; } = "dawid";
+
+    [Required]
+    public string Password { get; set; } = "iths";
 }

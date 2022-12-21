@@ -41,7 +41,7 @@ namespace ITHS.Webapi.Controllers.V1
             return values;
         }
 
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id}", Name = "GetValueById")]
         public string Get([FromQuery] int id)
         {
             return values[id];

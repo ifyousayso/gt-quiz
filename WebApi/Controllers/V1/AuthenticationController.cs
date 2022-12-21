@@ -7,52 +7,50 @@ using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
-using System.Security.Claims;
-using System.Text;
 
-namespace ITHS.Webapi.Controllers.V1
-{
-    [Route("api/v1/[controller]")]
-    [ApiExplorerSettings(GroupName = "v1")]
-    [ApiController]
-    public class AuthenticationController : ControllerBase
-    {
-        Authentication _auth;
-        public AuthenticationController()
-        {
-            _auth = new Authentication();
-        }
+namespace ITHS.Webapi.Controllers.V1;
+
+[Route("api/v1/[controller]")]
+[ApiExplorerSettings(GroupName = "v1")]
+[ApiController]
+public class AuthenticationController : ControllerBase {
+    private readonly Authentication _auth;
+
+    public AuthenticationController() {
+        _auth = new Authentication();
+    }
+
+    /// <summary>
+    /// Attempts to log in the user
+    /// </summary>
+    [HttpPost]
+    [SwaggerResponse((int)HttpStatusCode.OK)]
+    [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    public IActionResult Login(AuthenticationRequest authenticationRequest) {
+        try {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+
+            string serverHostUrl = $"{Request.Scheme}://{Request.Host.Host}:{Request.Host.Port}";
         
-        [HttpPost]
-        public IActionResult Login(AuthenticationRequest authRequest)
-        {
-            try
-            {
-                if(!ModelState.IsValid)
-                    return BadRequest(ModelState);
-
-                var serverHostUrl = $"{Request.Scheme}://{Request.Host.Host}:{Request.Host.Port}";
-                
-                var token = _auth.CreateJWTBearerToken(serverHostUrl);
-                
-                return Ok(token);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            string token = _auth.CreateJWTBearerToken(serverHostUrl);
+        
+            return Ok(token);
+        } catch (Exception e) {
+            return BadRequest(e.Message);
         }
+    }
 
-        /// <summary>
-        /// Check if the user is authorized
-        /// </summary>
-        [HttpGet, Authorize]
-        [SwaggerResponse((int)HttpStatusCode.Unauthorized, "Unauthorized")]
-        [SwaggerResponse((int)HttpStatusCode.OK, "Logged in successfull")]
-        public IActionResult CheckAccess() 
-        {
-            var user = HttpContext.User.Claims;
-            return Ok(user);
-        }
+    /// <summary>
+    /// Check if the user is authorized
+    /// </summary>
+    [HttpGet, Authorize]
+    [SwaggerResponse((int)HttpStatusCode.Unauthorized, "Unauthorized")]
+    [SwaggerResponse((int)HttpStatusCode.OK, "Login successful")]
+    public IActionResult CheckAccess() {
+        return Ok(HttpContext.User.Claims);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using ITHS.Application.ViewModels.Persons;
 using ITHS.Domain.Entities;
-using ITHS.Webapi.Persistance;
+using ITHS.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITHS.Application.Services;

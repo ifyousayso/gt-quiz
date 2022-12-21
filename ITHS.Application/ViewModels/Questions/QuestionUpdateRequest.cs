@@ -1,5 +1,5 @@
-﻿namespace ITHS.Application.ViewModels.Questions;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class QuestionUpdateRequest : QuestionBase {
-    public Guid Id { get; set; }
-}
+namespace ITHS.Application.ViewModels.Questions;
+
+public class QuestionUpdateRequest : QuestionBase {}

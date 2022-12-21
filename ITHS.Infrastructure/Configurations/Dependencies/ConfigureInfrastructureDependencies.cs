@@ -10,7 +10,7 @@ public static class ConfigureInfrastructureDependencies {
     public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services, IConfiguration config) {
         //TODO: Implement infrastructure dependencies here instead of bloating the Program.cs file
         return services
-            .AddScoped<INobelPrizeRepository, NobelPrizeRepository>()
-            .AddScoped<IPersonsRepository, PersonsRepository>();
+            .AddScoped<INobelPrizeRepository, NobelPrizeRepository>();
+//            .AddScoped<IPersonsRepository, PersonsRepository>();
     }
 }

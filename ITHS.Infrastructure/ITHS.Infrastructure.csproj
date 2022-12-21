@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Contexts\Persons\Adapters\" />
+    <Folder Include="Contexts\TheTriviaApi\" />
+    <Folder Include="Contexts\TheTriviaApi\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,4 +35,8 @@
     <ProjectReference Include="..\ITHS.Domain\ITHS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Contexts\TheTriviaApi\" />
+    <None Remove="Contexts\TheTriviaApi\Repositories\" />
+  </ItemGroup>
 </Project>
